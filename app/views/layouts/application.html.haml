@@ -1,0 +1,23 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title Anotar!
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %meta{:name => "description", :content => "Take notes, that's it"}
+    %meta{:name => "author", :content => "Jose Ruiz Jimenez"}
+    = stylesheet_link_tag 'application', :media => "all"
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    /[if lt IE 9]
+      %script{:src => "http://html5shim.googlecode.com/svn/trunk/html5.js"}
+
+  %body
+    %h1.title Anotar!
+    #main
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+
+      = yield
