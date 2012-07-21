@@ -2,9 +2,32 @@
   %span.icon-bar
   %span.icon-bar
   %span.icon-bar
-%a.brand{:href => "#"} Anotar!
+%a.brand{:href => root_path} Anotar!
 .nav-collapse
   %ul.nav
-    %li.active= link_to 'Home', '#'
+    %li.active= link_to 'Home', root_path
     %li= link_to 'About', '#about'
     %li= link_to 'Contact', '#contact'
+  %ul.nav.pull-right
+    - if user_signed_in?
+      %li
+        %div
+          %a.btn.btn-success{:href => destroy_user_session_path, :method => 'delete'}
+            %i.icon-off.icon-white
+            " Logout"
+      %li
+        %div
+          %a.btn.btn-danger{:href => edit_user_registration_path}
+            %i.icon-cog.icon-white
+            " Settings"
+    - else
+      %li
+        %div
+          %a.btn.btn-success{:href => new_user_session_path}
+            %i.icon-user.icon-white
+            " Login"
+      %li
+        %div
+          %a.btn.btn-info{:href => new_user_registration_path}
+            %i.icon-flag.icon-white
+            " Sign up"
