@@ -1,0 +1,10 @@
+%a.btn.btn-navbar{:'data-toggle' => "collapse", :'data-target' => ".nav-collapse"}
+  %span.icon-bar
+  %span.icon-bar
+  %span.icon-bar
+%a.brand{:href => "#"} Anotar!
+.nav-collapse
+  %ul.nav
+    %li.active= link_to 'Home', '#'
+    %li= link_to 'About', '#about'
+    %li= link_to 'Contact', '#contact'
