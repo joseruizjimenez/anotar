@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  validates_presence_of :username
+  validates_presence_of :username, :email, :password, :password_confirmation, :opt_in
   validates_uniqueness_of :author_id, :username, :email, :case_sensitive => false
 
   # Adds a random author_id

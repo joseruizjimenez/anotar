@@ -8,17 +8,12 @@
     %meta{:name => "description", :content => "Take notes, that's it"}
     %meta{:name => "author", :content => "Jose Ruiz Jimenez"}
 
-    -# = stylesheet_link_tag    "application", :media => "all"
     -# = javascript_include_tag "application"
+    = stylesheet_link_tag "application", :media => "screen"
     = render 'layouts/boostrap_css_files'
-    = csrf_meta_tags
-
-    -# HTML5 IE6-8 support elements plus a conditional speed hack
-    /[if IE]
-    /[if lt IE 9]
-      %script{:src => "http://html5shim.googlecode.com/svn/trunk/html5.js"}
-
+    = render 'layouts/html_ie_support'
     = render 'layouts/app_icons'
+    = csrf_meta_tags
 
   %body
     -# Navigation top bar (bootstrap)
@@ -29,14 +24,17 @@
 
     -# Main body container (bootstrap)
     #main{:role => "main"}
-      .container
+      .container-fluid
         .content
-          .row
-            .span12
+          .row-fluid
+            -# Menu and Footer
+            .span3
+              = render 'layouts/side_menu'
+              = render 'layouts/footer'
+            -# Main pages body
+            .span8
               = render 'layouts/messages'
               = yield
-
-          %footer
 
     = render 'layouts/boostrap_js_files'
     = render 'layouts/analytics'
