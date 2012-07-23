@@ -1,0 +1,18 @@
+require 'uuidtools'
+require 'base64'
+
+class SessionCredential < ActiveRecord::Base
+
+  attr_accessor :author_id, :session_id
+
+  def self.generate_id
+    Base64.encode64(UUIDTools::UUID.random_create)[0..8]
+  end
+
+  # Adds a random author_id
+  before_create do
+    self.session_id = generate_id
+    self.author_id = generate_id
+  end
+
+end

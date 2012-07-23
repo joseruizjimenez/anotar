@@ -16,15 +16,17 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'factory_girl'
-  gem 'ZenTest'
 end
 
 group :test do
   gem 'cucumber-rails'
+  gem 'ZenTest'
+  gem 'minitest'
 end
 
 group :production do
   gem 'pg'
+  gem 'thin'
 end
 
 # Gems used only for assets and not required
@@ -44,3 +46,4 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'devise'
 gem 'simple_form'
+gem 'uuidtools'

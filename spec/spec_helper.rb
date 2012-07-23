@@ -1,5 +1,5 @@
 require 'simplecov'
-SimpleCov.start ‘rails’
+SimpleCov.start 'rails'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -39,4 +39,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Adds support for Devise in rspec
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
 end

@@ -10,7 +10,7 @@ Given /^I am not logged in$/ do
 end
 
 When /^I add a new note "(.*?)"$/ do |text|
-  fill_in 'note_text', :with => text
+  fill_in 'text', :with => text
   click_button 'Add note'
 end
 
@@ -25,6 +25,6 @@ end
 Given /^I'm logged in as "(.*?)"$/ do |username|
   @user = User.create(:username => username, :password => 's3cr3t',
     :email => username + '@email.com')
-  visit users_login_path :username => @user.username, :password => @user.password
+  visit users_login_path :login => @user.username, :password => @user.password
   page.should have_content('Hello, ' + @user.username)
 end
