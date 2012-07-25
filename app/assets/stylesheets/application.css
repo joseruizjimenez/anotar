@@ -12,6 +12,10 @@
  *= require_tree .
  */
 
+body {
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
 #sidebar-footer {
   padding: 5px;
   color: grey;
@@ -20,4 +24,21 @@
 
 #sidebar-footer a {
   color: grey;
+}
+
+.sidebar-nav .sidebar-link {
+  padding-left: 10px;
+}
+
+#add-note-button {
+  padding-top: 5px;
+  padding-bottom: 38px;
+}
+
+gray {
+  color: gray;
+}
+
+darker {
+  color: #333333;
 }

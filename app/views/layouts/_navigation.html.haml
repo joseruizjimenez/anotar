@@ -2,7 +2,9 @@
   %span.icon-bar
   %span.icon-bar
   %span.icon-bar
-%a.brand{:href => root_path} Anotar!
+%a.brand{:href => root_path}
+  %i.icon-pencil.icon-white
+  Anotar!
 .nav-collapse
   %ul.nav
     %li.active= link_to 'Home', root_path
@@ -14,20 +16,20 @@
         %div
           %a.btn.btn-success{:href => destroy_user_session_path, :method => 'delete'}
             %i.icon-off.icon-white
-            " Logout"
+            Logout
       %li
         %div
           %a.btn.btn-danger{:href => edit_user_registration_path}
             %i.icon-cog.icon-white
-            " Settings"
+            Settings
     - else
       %li
         %div
           %a.btn.btn-success{:href => new_user_session_path}
             %i.icon-user.icon-white
-            " Login"
+            Login
       %li
         %div
           %a.btn.btn-info{:href => new_user_registration_path}
             %i.icon-flag.icon-white
-            " Sign up"
+            Sign up

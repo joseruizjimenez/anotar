@@ -15,4 +15,8 @@ class SessionCredential < ActiveRecord::Base
     self.author_id = generate_id
   end
 
+  def hashtags
+    Note.find_all_by_author_id(self.author_id).map { |n| n.hashtags.each { |h| h } }.uniq
+  end
+
 end

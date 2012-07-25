@@ -7,6 +7,9 @@
     = f.input :password, :required => false
     = f.input :password_confirmation, :required => false
     = f.input :opt_in, :label => false, :inline_label => "I agree with the Anotar.me"
-    %label= link_to('Terms of Service', '/legal/service.html') +" and "+ link_to('Privacy Policy', '/legal/privacy.html')
-    = f.button :submit, "Sign up"
+    %span.help-block= link_to('Terms of Service', '/legal/service.html') +" and "+ link_to('Privacy Policy', '/legal/privacy.html')
+    %button.btn.btn-primary{:name => "commit", :type => "submit"}
+      %b Sign up
+      with Anotar.me
+    -#= f.button :submit, "Sign up"
 = render "devise/shared/links"

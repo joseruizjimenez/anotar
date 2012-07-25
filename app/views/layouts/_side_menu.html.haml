@@ -1,9 +1,41 @@
 .menu
   %h2 Menu
-  .well.sidebar-nav
+  .well.sidebar-nav{:style => "padding: 8px 0;"}
     %ul.nav.nav-list
-      %li.nav-header Encabezado 1
-      %li= link_to 'Opcion 1', '#'
-      %li= link_to 'Opcion 2', '#'
-      %li.nav-header Encabezado 2
-      %li= link_to 'Opcion 5', '#'
+      %li.nav-header Categories
+      %li.sidebar-link
+        %a{:href => "#"}
+          %i.icon-pencil
+          Write a note
+      %li.sidebar-link
+        %a{:href => "#"}
+          %i.icon-inbox
+          All your notes
+      %li.sidebar-link
+        %a{:href => "#"}
+          %i.icon-star
+          Favorites
+      %li.sidebar-link
+        %a{:href => "#"}
+          %i.icon-globe
+          Public notes
+      %li.sidebar-link
+        %a{:href => "#"}
+          %i.icon-tags
+          Hashtags view
+      %li.sidebar-link
+        %a{:href => "#"}
+          %i.icon-random
+          Random view
+      %li.nav-header Tags (Use them on the top)
+      %li
+        %pre <darker>@title{My note}</darker> <gray>Gives it a title</gray>
+      %li
+        %pre <darker>@fav@</darker> <gray>Adds it to your favorites</gray>
+      %li
+        %pre <darker>@public@</darker> <gray>Makes a link for sharing</gray>
+      %li.nav-header Style markups
+      %li
+        %pre <darker>*word*</darker> <gray>Will <b>bold</b> it</gray>
+      %li
+        %pre <darker>_word_</darker> <gray>Will <i>italic</i> it</gray>

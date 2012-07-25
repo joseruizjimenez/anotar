@@ -2,7 +2,7 @@
 
 Given /^I am on the Anotar home page$/ do
   visit notes_path
-  page.should have_content 'Create a note...'
+  page.should have_content 'Write a note!'
 end
 
 Given /^I am not logged in$/ do
@@ -15,7 +15,7 @@ When /^I add a new note "(.*?)"$/ do |text|
 end
 
 Then /^I should see the Anotar home page$/ do
-  page.should have_content 'Create a note...'
+  page.should have_content 'Write a note!'
 end
 
 Then /^the notice "(.*?)"$/ do |notice|

@@ -16,3 +16,6 @@
 
 # Ignore the coverage log.
 /coverage
+
+# Dont share the secret_token for cookies ssl
+/config/initializers/secret_token.rb

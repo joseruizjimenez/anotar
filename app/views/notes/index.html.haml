@@ -1,6 +1,36 @@
-%h2 Write a note!
+-# Add note form
 = simple_form_for :note do |f|
+  .page-header
+    %h1
+      Take a note!
+      %small Let us remember it for you :)
   .form-inputs
-    = f.input :text, :autofocus => true, :placeholder => 'Create a note...', :as => :text, :label => false
-  .form-actions
-    = f.button :submit, "Add note"
+    = f.input :text, :autofocus => true, :placeholder => 'Create a note...', :label => false, :as => :note
+  #add-note-button
+    %button.btn.btn-primary.btn-large.span{:name => "commit", :type => "submit"}
+      %i.icon-pencil.icon-white
+      Add note
+%hr
+-# Notes list
+.notes-list
+  - if @notes.blank?
+    %blockquote.pull-left
+      %p
+        %strong
+          %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
+      %p No notes yet... What's in your mind? Write it down!
+      %small 12 del 3 de 2012
+    %blockquote.pull-left
+      %p
+        %strong
+          %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
+      %p Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+      %small 12 del 3 de 2012
+    %blockquote.pull-left
+      %p
+        %strong
+          %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
+      %p Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. Dsad, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+      %small 12 del 3 de 2012
+  - else
+    .well hola

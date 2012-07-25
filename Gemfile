@@ -47,3 +47,4 @@ gem 'haml'
 gem 'devise'
 gem 'simple_form'
 gem 'uuidtools'
+gem "google_visualr"

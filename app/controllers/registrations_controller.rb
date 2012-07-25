@@ -30,9 +30,12 @@ class RegistrationsController < Devise::RegistrationsController
     hash ||= resource_params || {}
     self.resource = resource_class.new_with_session(hash, session)
     if session.has_key?(:session_credential_id)
-      @user_session_credential = SessionCredential.find_by_session_id session[:session_credential_id]
-      self.resource.author_id = @user_session_credential.author_id
-      @user_session_credential.destroy
+      old_user = SessionCredential.find_by_session_id session[:session_credential_id]
+      if old_user.nil?
+        self.resource.author_id = SessionCredential.generate_id
+      else
+        self.resource.author_id = old_user.author_id and old_user.destroy
+      end
     else
       self.resource.author_id = SessionCredential.generate_id
     end

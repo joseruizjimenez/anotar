@@ -1,0 +1,10 @@
+- content_for :head do
+  = javascript_include_tag 'http://www.google.com/jsapi'
+
+#chart{:style => "width: 700px; height: 240px;"}
+= render_chart @chart, 'chart'
+
+%h2 Users
+- @users.each do |user|
+  %br/
+  #{link_to user.email, user} signed up #{user.created_at.to_date}

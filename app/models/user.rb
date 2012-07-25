@@ -9,12 +9,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  has_many :notes, :foreign_key => :author_id
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
     :remember_me, :confirmed_at, :opt_in, :login
   # attr_accessible :title, :body
 
-  attr_accessor :login
+  attr_accessor :login, :author_id
 
   validates_presence_of :username, :email, :password, :password_confirmation, :opt_in
   validates_uniqueness_of :author_id, :username, :email, :case_sensitive => false
@@ -31,5 +33,9 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  def hashtags
+    self.notes.map { |n| n.hashtags.each { |h| h } }.uniq
   end
 end
