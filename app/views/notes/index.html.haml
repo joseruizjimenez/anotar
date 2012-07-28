@@ -5,7 +5,10 @@
       Take a note!
       %small Let us remember it for you :)
   .form-inputs
-    = f.input :text, :autofocus => true, :placeholder => 'Create a note...', :label => false, :as => :note
+    - if @old_text.nil?
+      = f.input :text, :autofocus => true, :placeholder => 'Create a note...', :label => false, :as => :note
+    - else
+      = f.input :text, :autofocus => true, :value => @old_text, :label => false, :as => :note
   #add-note-button
     %button.btn.btn-primary.btn-large.span{:name => "commit", :type => "submit"}
       %i.icon-pencil.icon-white
@@ -13,24 +16,18 @@
 %hr
 -# Notes list
 .notes-list
-  - if @notes.blank?
-    %blockquote.pull-left
-      %p
-        %strong
-          %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
-      %p No notes yet... What's in your mind? Write it down!
-      %small 12 del 3 de 2012
-    %blockquote.pull-left
-      %p
-        %strong
-          %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
-      %p Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-      %small 12 del 3 de 2012
-    %blockquote.pull-left
-      %p
-        %strong
-          %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
-      %p Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. Dsad, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-      %small 12 del 3 de 2012
-  - else
-    .well hola
+  - unless @notes.blank?
+    - @notes.each do |note|
+      .note
+        .well{:'background-color' => cycle("#EBECF0", "#DFE1E9", "#CFD2E0", "#C8CBDA")}
+          .note-title= raw note.title
+          .note-text= raw note.html_text
+          .note-delete-button= link_to "<i class='icon-trash'></i>", note_path(note), :method => :delete, :confirm => 'Are you sure?'
+          .note-edit-button= link_to "<i class='icon-edit'></i>", edit_note_path(note)
+          .note-last-edit= link_to note.updated_at.strftime("%B %d, %Y"), note_path(note)
+    -#%blockquote.pull-left
+    -#  %p
+    -#    %strong
+    -#      %abbr.initialism{:title => "12 del 3 de 2012"} Tienes que esforzarte
+    -# %p No notes yet... What's in your mind? Write it down!
+    -#  %small 12 del 3 de 2012

@@ -12,7 +12,7 @@ describe NotesController do
 
     it 'should use the session id to get the session_credential (logged out)' do
       SessionCredential.should_receive(:find_by_session_id).with('a_session_id')
-      get :index, :session_id => 'a_session_id'
+      get :index, :session_credential_id => 'a_session_id'
     end
 
     it 'should find all the user_id notes (logged in)' do
@@ -26,12 +26,12 @@ describe NotesController do
       @fake_session_credential = FactoryGirl.create(:session_credential, :user_id => 'an_user_id')
       SessionCredential.stub(:find_by_session_id).and_return(@fake_session_credential)
       Note.should_receive(:find_by_user_id).with(@fake_session_credential.user_id)
-      get :index, :session_id => 'a_session_id'
+      get :index, :session_credential_id => 'a_session_id'
     end
 
     it 'should apology for erasing the notes (if session_user_id is not found)' do
       SessionCredential.stub(:find_by_session_id).and_return(nil)
-      get :index, :session_id => 'a_not_found_session_id'
+      get :index, :session_credential_id => 'a_not_found_session_id'
       flash[:alert].should match("We are sorry, we lost the track of "+
         "your session. <br /> Please Sign up to prevent this")
     end
@@ -50,7 +50,7 @@ describe NotesController do
       @fake_notes = [mock('note1'), mock('note2')]
       SessionCredential.stub(:find_by_session_id).and_return(@fake_session_credential)
       Note.stub(:find_by_user_id).and_return(@fake_notes)
-      get :index, :session_id => 'a_session_id'
+      get :index, :session_credential_id => 'a_session_id'
       response.should render_template notes_path
     end
 
@@ -68,7 +68,7 @@ describe NotesController do
       @fake_notes = [mock('note1'), mock('note2')]
       SessionCredential.stub(:find_by_session_id).and_return(@fake_session_credential)
       Note.stub(:find_by_user_id).and_return(@fake_notes)
-      get :index, :session_id => 'a_session_id'
+      get :index, :session_credential_id => 'a_session_id'
       assigns[:notes].should == @fake_notes
     end
 

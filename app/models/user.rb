@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :remember_me, :confirmed_at, :opt_in, :login
   # attr_accessible :title, :body
 
-  attr_accessor :login, :author_id
+  attr_accessor :login, :author_id, :updated_at, :created_at
 
   validates_presence_of :username, :email, :password, :password_confirmation, :opt_in
   validates_uniqueness_of :author_id, :username, :email, :case_sensitive => false

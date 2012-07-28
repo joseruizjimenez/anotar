@@ -3,7 +3,7 @@ require 'base64'
 
 class SessionCredential < ActiveRecord::Base
 
-  attr_accessor :author_id, :session_id
+  attr_accessor :author_id, :session_id, :updated_at, :created_at, :visits
 
   def self.generate_id
     Base64.encode64(UUIDTools::UUID.random_create)[0..8]

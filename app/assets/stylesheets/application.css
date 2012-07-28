@@ -26,6 +26,10 @@ body {
   color: grey;
 }
 
+.sidebar-nav pre {
+  background-color: #EBECF0;
+}
+
 .sidebar-nav .sidebar-link {
   padding-left: 10px;
 }

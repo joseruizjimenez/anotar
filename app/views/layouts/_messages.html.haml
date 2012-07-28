@@ -1,3 +1,7 @@
+- if @notes.blank? && !user_signed_in?
+  .alert.alert-info
+    %button.close{:'data-dismiss' => "alert", :type => "button"} &#215;
+    = content_tag :div, "Hello! Nice to meet you. Please, have fun with us!", :id => "flash_info}"
 - flash.each do |name, msg|
   %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
     %button.close{:'data-dismiss' => "alert", :type => "button"} &#215;

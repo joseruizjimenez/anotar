@@ -11,14 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723190031) do
+ActiveRecord::Schema.define(:version => 20120727191457) do
 
-  create_table "notes", :force => true do |t|
-    t.string   "author_id",  :default => "", :null => false
-    t.string   "title"
+  create_table "hashtags", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.integer  "hits",       :default => 1
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "hashtags_notes", :id => false, :force => true do |t|
+    t.integer "hashtag_id"
+    t.integer "note_id"
+  end
+
+  add_index "hashtags_notes", ["hashtag_id"], :name => "index_hashtags_notes_on_hashtag_id"
+  add_index "hashtags_notes", ["note_id"], :name => "index_hashtags_notes_on_note_id"
+
+  create_table "notes", :force => true do |t|
+    t.string   "author_id",  :default => "",    :null => false
+    t.string   "title"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.text     "text"
+    t.integer  "edit_count", :default => 0
+    t.boolean  "shared",     :default => false
+    t.boolean  "fav",        :default => false
+    t.text     "html_text"
   end
 
   create_table "session_credentials", :force => true do |t|
@@ -26,14 +45,15 @@ ActiveRecord::Schema.define(:version => 20120723190031) do
     t.string   "session_id", :default => "", :null => false
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.integer  "visits",     :default => 0
   end
 
   add_index "session_credentials", ["author_id"], :name => "index_session_credentials_on_author_id", :unique => true
   add_index "session_credentials", ["session_id"], :name => "index_session_credentials_on_session_id", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -46,11 +66,12 @@ ActiveRecord::Schema.define(:version => 20120723190031) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "username",               :default => "", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "username",               :default => "",    :null => false
     t.boolean  "opt_in"
-    t.string   "author_id",              :default => "", :null => false
+    t.string   "author_id",              :default => "",    :null => false
+    t.boolean  "admin",                  :default => false
   end
 
   add_index "users", ["author_id"], :name => "index_users_on_author_id", :unique => true

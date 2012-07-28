@@ -5,5 +5,10 @@ We want:
     - Liquid templates to show a simple and beautiful interface on any device
     - Zero learning curve
 
+To do:
+    - Add AJAX index showing new notes
+    - Add 'public notes' with route: /notes/:id (show verb checking: if not his note: has it 'shared'?)
+    - Add Javascript note style in client, not in server
+
 Have fun :)
 

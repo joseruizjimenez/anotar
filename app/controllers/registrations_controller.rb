@@ -34,7 +34,9 @@ class RegistrationsController < Devise::RegistrationsController
       if old_user.nil?
         self.resource.author_id = SessionCredential.generate_id
       else
-        self.resource.author_id = old_user.author_id and old_user.destroy
+        self.resource.author_id = old_user.author_id
+        session[:session_credential_id] = nil
+        old_user.destroy
       end
     else
       self.resource.author_id = SessionCredential.generate_id

@@ -8,8 +8,8 @@
     %meta{:name => "description", :content => "Take notes, that's it"}
     %meta{:name => "author", :content => "Jose Ruiz Jimenez"}
 
-    = javascript_include_tag "application"
     = stylesheet_link_tag "application", :media => "screen"
+    = render 'layouts/boostrap_css_files'
     = render 'layouts/html_ie_support'
     = render 'layouts/app_icons'
     = csrf_meta_tags
@@ -38,4 +38,5 @@
               = yield
             .span1
     = render 'layouts/boostrap_js_files'
+    = javascript_include_tag "application"
     = render 'layouts/analytics'

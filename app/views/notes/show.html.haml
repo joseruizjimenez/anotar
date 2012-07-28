@@ -1,0 +1,7 @@
+%h2= raw @note.title
+.note
+  .well
+    .note-text= raw note.html_text
+    .note-delete-button= link_to "<i class='icon-trash'></i>", note_path(note), :method => :delete, :confirm => 'Are you sure?'
+    .note-edit-button= link_to "<i class='icon-edit'></i>", edit_note_path(note)
+    .note-last-edit= link_to note.updated_at.strftime("%B %d, %Y"), note_path(note)
