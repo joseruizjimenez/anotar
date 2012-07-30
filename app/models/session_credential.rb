@@ -2,17 +2,38 @@ require 'uuidtools'
 require 'base64'
 
 class SessionCredential < ActiveRecord::Base
+  after_find :find_aux
+  after_initialize :init
 
   attr_accessor :author_id, :session_id, :updated_at, :created_at, :visits
 
-  def self.generate_id
-    Base64.encode64(UUIDTools::UUID.random_create)[0..8]
+  # Adds a random author_id
+  def init
+    if @read_session
+      @session_id = self[:session_id]
+      @author_id = self[:author_id]
+      @visits = self[:visits]
+      @updated_at = self[:updated_at]
+      @created_at = self[:created_at]
+      @id = self[:id]
+    else
+      self[:session_id] = SessionCredential.generate_id
+      self[:author_id] = SessionCredential.generate_id
+      @session_id = self[:session_id]
+      @author_id = self[:author_id]
+      @visits = self[:visits]
+      @updated_at = self[:updated_at]
+      @created_at = self[:created_at]
+      @id = self[:id]
+    end
   end
 
-  # Adds a random author_id
-  before_create do
-    self.session_id = generate_id
-    self.author_id = generate_id
+  def find_aux
+    @read_session = true
+  end
+
+  def self.generate_id
+    Base64.encode64(UUIDTools::UUID.random_create)[0..8]
   end
 
   def hashtags

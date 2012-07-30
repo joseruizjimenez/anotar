@@ -3,7 +3,7 @@
   .page-header
     %h1
       Take a note!
-      %small Let us remember it for you :)
+      %small and let us remember it for you :)
   .form-inputs
     - if @old_text.nil?
       = f.input :text, :autofocus => true, :placeholder => 'Create a note...', :label => false, :as => :note
@@ -19,12 +19,12 @@
   - unless @notes.blank?
     - @notes.each do |note|
       .note
-        .well{:'background-color' => cycle("#EBECF0", "#DFE1E9", "#CFD2E0", "#C8CBDA")}
-          .note-title= raw note.title
-          .note-text= raw note.html_text
-          .note-delete-button= link_to "<i class='icon-trash'></i>", note_path(note), :method => :delete, :confirm => 'Are you sure?'
-          .note-edit-button= link_to "<i class='icon-edit'></i>", edit_note_path(note)
-          .note-last-edit= link_to note.updated_at.strftime("%B %d, %Y"), note_path(note)
+        .well{:style => "background-color: #{cycle('#CFD2E0', '#DFE1E9', '#EBECF0', '#F2F2F3', '#F8F8F8', '#F2F2F3', '#EBECF0', '#DFE1E9')}"}
+          %strong.note-title= raw note.title
+          %p.note-text= raw note.html_text
+          .note-delete-button.pull-right= link_to(raw("<i class='icon-trash'></i>"), note_path(note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })
+          .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(note))
+          .note-last-edit.pull-left= link_to note.updated_at.strftime("%B %d, %Y"), note_path(note)
     -#%blockquote.pull-left
     -#  %p
     -#    %strong

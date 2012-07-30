@@ -1,13 +1,12 @@
 %h2 Edit mode!
 = simple_form_for(:note, :url => note_path(@note.id),:html => { :method => :put }) do |f|
   = f.error_notification
-  .well
-    .form-inputs
-    = f.input :text, :autofocus => true, :value => @note.text, :label => false, :as => :note
-    #add-note-button
-    %button.btn.btn-success.btn-large.span{:name => "commit", :type => "submit"}
-      %i.icon-edit.icon-white
-      Edit note
-    %a.btn.btn-danger.btn-large.span{:href => edit_user_registration_path, :method => :delete, :confirm => 'Are you sure?'}
-      %i.icon-trash.icon-white
-      Settings
+  .form-inputs
+    .well
+      = f.input :text, :autofocus => true, :value => @note.text, :label => false, :as => :note
+  %button.btn.btn-info.btn-large{:name => "commit", :type => "submit"}
+    %i.icon-edit.icon-white
+    Save edit
+  %a.btn.btn-danger.btn-large{:href => edit_user_registration_path, :method => :delete, :confirm => 'Are you sure?'}
+    %i.icon-trash.icon-white
+    Delete

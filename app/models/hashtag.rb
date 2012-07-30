@@ -6,4 +6,30 @@ class Hashtag < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  after_find :init
+
+  def init
+    @name = self[:name]
+    @hits = self[:hits]
+    @updated_at = self[:updated_at]
+    @created_at = self[:created_at]
+    @id = self[:id]
+  end
+
+  before_save do
+    self[:name] = @name
+    if self.new_record?
+      self[:hits] = 0
+    else
+      self[:hits] = @hits
+    end
+    @updated_at = self[:updated_at]
+    @created_at = self[:created_at]
+    @id = self[:id]
+  end
+
+  before_validation do
+    self[:name] = @name
+  end
+
 end

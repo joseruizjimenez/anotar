@@ -1,7 +1,7 @@
-%h2= raw @note.title
+%h2= if @note.title != '' then raw @note.title else "Untitled note" end
 .note
   .well
-    .note-text= raw note.html_text
-    .note-delete-button= link_to "<i class='icon-trash'></i>", note_path(note), :method => :delete, :confirm => 'Are you sure?'
-    .note-edit-button= link_to "<i class='icon-edit'></i>", edit_note_path(note)
-    .note-last-edit= link_to note.updated_at.strftime("%B %d, %Y"), note_path(note)
+    %p.note-text= raw @note.html_text
+    .note-delete-button.pull-right= link_to(raw("<i class='icon-trash'></i>"), note_path(@note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })
+    .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(@note))
+    .note-last-edit.pull-left= link_to @note.updated_at.strftime("%B %d, %Y"), note_path(@note)
