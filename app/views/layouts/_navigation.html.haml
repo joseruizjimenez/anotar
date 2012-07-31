@@ -14,14 +14,12 @@
     - if user_signed_in?
       %li
         %div
-          %a.btn.btn-success{:href => destroy_user_session_path, :method => 'delete'}
-            %i.icon-off.icon-white
-            Logout
-      %li
-        %div
-          %a.btn.btn-danger{:href => edit_user_registration_path}
+          %a.btn.btn-success{:href => edit_user_registration_path}
             %i.icon-cog.icon-white
             Settings
+      %li
+        %div
+          .btn.btn-danger= link_to(raw("<div style='color: white;'><i class='icon-off icon-white'></i> Logout</div>"), destroy_user_session_path, :method => :delete)
     - else
       %li
         %div

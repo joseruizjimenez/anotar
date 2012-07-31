@@ -2,6 +2,13 @@ class NotesController < ApplicationController
 
   def index
     if user_signed_in?
+      if session.has_key? :session_credential_id
+        old_user = SessionCredential.find_by_session_id session[:session_credential_id]
+        unless old_user.nil?
+          session[:session_credential_id] = nil
+          old_user.destroy
+        end
+      end
       @notes = current_user.notes.sort_by(&:updated_at).reverse
     elsif session.has_key? :session_credential_id
       user_credential = SessionCredential.find_by_session_id session[:session_credential_id]
