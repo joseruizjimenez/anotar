@@ -24,8 +24,8 @@ class NotesController < ApplicationController
   def create
     if user_signed_in?
       new_note = current_user.notes.create(params[:note])
-      @notes = current_user.notes.sort_by(&:updated_at).reverse
-      if current_user.save
+      if !new_note.new_record?
+        @notes = current_user.notes.sort_by(&:updated_at).reverse
         # flash[:notice] = "Your note was added succesfully!"
       else
         flash.now[:alert] = "Oops! Something went wrong... please try again"

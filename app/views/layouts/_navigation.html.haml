@@ -8,14 +8,18 @@
 .nav-collapse
   %ul.nav
     %li.active= link_to 'Home', root_path
-    %li= link_to 'About', '#about'
-    %li= link_to 'Contact', '#contact'
+    %li= link_to 'About', '/legal/about.html'
+    %li= link_to 'Contact', 'mailto:anotar.me@gmail.com'
+  %form.navbar-search.pull-left{:action => '/hashtags/nav', :method => 'get', :id => 'hashtags_search', :novalidate => 'novalidate'}
+    %input.search-query.span2{:type => "text", :placeholder => "Hashtag search", :name => 'name', :id => 'name'}
   %ul.nav.pull-right
     - if user_signed_in?
+      %li.navbar-text= current_user.email
+      %li.divider-vertical
       %li
         %div
-          %a.btn.btn-success{:href => edit_user_registration_path}
-            %i.icon-cog.icon-white
+          %a.btn{:href => edit_user_registration_path}
+            %i.icon-cog
             Settings
       %li
         %div

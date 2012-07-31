@@ -10,6 +10,7 @@ Anotar::Application.routes.draw do
   get 'notes/all' => 'notes#all', :as => :notes_all
   get 'notes/favs' => 'notes#favs', :as => :notes_favorited
   get 'notes/shared' => 'notes#shared', :as => :notes_shared
+  get 'hashtags/nav' => 'hashtags#show'
   get 'hashtags/:name' => 'hashtags#show', :as => :hashtag
   get 'hashtags' => 'hashtags#index', :as => :hashtags
 

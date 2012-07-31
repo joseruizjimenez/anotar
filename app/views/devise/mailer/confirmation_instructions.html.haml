@@ -1,5 +1,5 @@
 %h2
   Anotar.me
-%p Welcome #{@resource.email}!
+%p Welcome #{@resource.username}!
 %p You can confirm your account email through the link below:
 %p= link_to 'Confirm my Anotar.me account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)

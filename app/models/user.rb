@@ -9,14 +9,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  has_many :notes, :foreign_key => :author_id, :primary_key => :author_id
+  has_many :notes, :foreign_key => :author_id, :primary_key => :author_id, :dependent => :destroy
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
     :remember_me, :confirmed_at, :opt_in, :login
   # attr_accessible :title, :body
 
-  attr_accessor :login, :updated_at, :created_at
+  attr_accessor :login
 
   validates_presence_of :username, :email, :password, :password_confirmation, :opt_in
   validates_uniqueness_of :username, :case_sensitive => false

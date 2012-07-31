@@ -19,3 +19,6 @@
 
 # Dont share the secret_token for cookies ssl
 /config/initializers/secret_token.rb
+
+# Dont share email account
+/config/environments/production.rb

@@ -2,12 +2,12 @@
   %h1
     Search results
     - if @fav
-      - results = "(Found #{@notes.size} favorited note"
+      - results = "(Found #{if @notes.nil? then "0" else @notes.size end} favorited note"
     - elsif @shared
-      - results = "(Found #{@notes.size} public note"
+      - results = "(Found #{if @notes.nil? then "0" else @notes.size end} public note"
     - else
-      - results = "(Found #{@notes.size} note"
-    - if @notes.size != 1 then results << "s)" else results << ")" end
+      - results = "(Found #{if @notes.nil? then "0" else @notes.size end} note"
+    - if (@notes.nil? || @notes.size != 1) then results << "s)" else results << ")" end
     %small= results
 -# Paginate hidden counters
 %input#current_page{:type => 'hidden'}

@@ -7,6 +7,4 @@
   %button.btn.btn-info.btn-large{:name => "commit", :type => "submit"}
     %i.icon-edit.icon-white
     Save edit
-  %a.btn.btn-danger.btn-large{:href => edit_user_registration_path, :method => :delete, :confirm => 'Are you sure?'}
-    %i.icon-trash.icon-white
-    Delete
+  .btn.btn-danger.btn-large= link_to(raw("<div style='color: white;'><i class='icon-trash icon-white'></i> Delete</div>"), note_path(@note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })

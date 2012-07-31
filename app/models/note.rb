@@ -3,7 +3,7 @@ class Note < ActiveRecord::Base
   has_and_belongs_to_many :hashtags
 
   attr_accessor :author_id, :title, :text, :html_text, :edit_count, :shared,
-    :fav, :updated_at, :created_at, :id
+    :fav
   attr_accessible :text, :author_id
 
   validates_presence_of :author_id, :text
