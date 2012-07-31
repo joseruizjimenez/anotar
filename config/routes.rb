@@ -7,6 +7,11 @@ Anotar::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
+  get 'notes/all' => 'notes#all', :as => :notes_all
+  get 'notes/favs' => 'notes#favs', :as => :notes_favorited
+  get 'notes/shared' => 'notes#shared', :as => :notes_shared
+  get 'hashtags/:name' => 'hashtags#show', :as => :hashtag
+  get 'hashtags' => 'hashtags#index', :as => :hashtags
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

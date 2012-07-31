@@ -1,7 +1,7 @@
-- if @notes.blank? && @welcome
-  .alert.alert-info
-    %button.close{:'data-dismiss' => "alert", :type => "button"} &#215;
-    = content_tag :div, "<b>Welcome</b> to Anotar.me! Please, have fun with us!", :id => "flash_info}"
+-# if @notes.blank? && @welcome
+-#  .alert.alert-info
+-#    %button.close{:'data-dismiss' => "alert", :type => "button"} &#215;
+-#    = content_tag :div, raw("<b>Welcome</b> to Anotar.me! Please, have fun with us!"), :id => "flash_info}"
 - flash.each do |name, msg|
   %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
     %button.close{:'data-dismiss' => "alert", :type => "button"} &#215;

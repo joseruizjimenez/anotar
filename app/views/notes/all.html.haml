@@ -1,19 +1,14 @@
--# Add note form
-= simple_form_for :note do |f|
-  .page-header
-    %h1
-      Take a note!
-      %small and let us remember it for you :)
-  .form-inputs
-    - if @old_text.nil?
-      .note-field= f.input :text, :autofocus => true, :placeholder => 'Create a note...', :label => false, :as => :note
+.page-header
+  %h1
+    Search results
+    - if @fav
+      - results = "(Found #{@notes.size} favorited note"
+    - elsif @shared
+      - results = "(Found #{@notes.size} public note"
     - else
-      = f.input :text, :autofocus => true, :value => @old_text, :label => false, :as => :note
-  #add-note-button
-    %button.btn.btn-primary.btn-large.span{:name => "commit", :type => "submit"}
-      %i.icon-pencil.icon-white
-      Add note
-%hr
+      - results = "(Found #{@notes.size} note"
+    - if @notes.size != 1 then results << "s)" else results << ")" end
+    %small= results
 -# Paginate hidden counters
 %input#current_page{:type => 'hidden'}
 %input#show_per_page{:type => 'hidden'}

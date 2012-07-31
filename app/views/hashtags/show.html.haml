@@ -1,19 +1,7 @@
--# Add note form
-= simple_form_for :note do |f|
-  .page-header
-    %h1
-      Take a note!
-      %small and let us remember it for you :)
-  .form-inputs
-    - if @old_text.nil?
-      .note-field= f.input :text, :autofocus => true, :placeholder => 'Create a note...', :label => false, :as => :note
-    - else
-      = f.input :text, :autofocus => true, :value => @old_text, :label => false, :as => :note
-  #add-note-button
-    %button.btn.btn-primary.btn-large.span{:name => "commit", :type => "submit"}
-      %i.icon-pencil.icon-white
-      Add note
-%hr
+.page-header
+  %h1
+    = raw ("Search results for <a href='/hashtags/#{@hashtag_name}'>##{@hashtag_name}</a>")
+    %small= "(Found #{@notes.size} notes)"
 -# Paginate hidden counters
 %input#current_page{:type => 'hidden'}
 %input#show_per_page{:type => 'hidden'}

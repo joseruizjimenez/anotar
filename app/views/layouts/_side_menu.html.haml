@@ -4,29 +4,29 @@
     %ul.nav.nav-list
       %li.nav-header Categories
       %li.sidebar-link
-        %a{:href => "#"}
+        %a{:href => notes_path}
           %i.icon-pencil
           Write a note
       %li.sidebar-link
-        %a{:href => "#"}
+        %a{:href => notes_all_path}
           %i.icon-inbox
           All your notes
       %li.sidebar-link
-        %a{:href => "#"}
+        %a{:href => notes_favorited_path}
           %i.icon-star
           Favorites
       %li.sidebar-link
-        %a{:href => "#"}
+        %a{:href => notes_shared_path}
           %i.icon-globe
           Public notes
       %li.sidebar-link
-        %a{:href => "#"}
+        %a{:href => hashtags_path}
           %i.icon-tags
           Hashtags view
       %li.sidebar-link
-        %a{:href => "#"}
-          %i.icon-random
-          Random view
+        %a{:href => hashtag_path(:name => 'todo')}
+          %i.icon-ok
+          = "#TODO notes"
       %li.nav-header Tag your note
       %li
         %pre <darker>@title{My note}</darker> <gray>Gives it a title</gray>

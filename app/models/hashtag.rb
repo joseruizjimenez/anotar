@@ -9,7 +9,7 @@ class Hashtag < ActiveRecord::Base
   after_find :init
 
   def init
-    @name = self[:name]
+    @name = self[:name].downcase
     @hits = self[:hits]
     @updated_at = self[:updated_at]
     @created_at = self[:created_at]
@@ -17,7 +17,7 @@ class Hashtag < ActiveRecord::Base
   end
 
   before_save do
-    self[:name] = @name
+    self[:name] = @name.downcase
     if self.new_record?
       self[:hits] = 0
     else
@@ -29,7 +29,7 @@ class Hashtag < ActiveRecord::Base
   end
 
   before_validation do
-    self[:name] = @name
+    self[:name] = @name.downcase
   end
 
 end

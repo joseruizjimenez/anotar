@@ -66,7 +66,7 @@ class Note < ActiveRecord::Base
   def set_hashtags_from_text
     new_hashtag_names = []
     new_hashtags = []
-    @text.scan(/#(\w+)/) { |tag| new_hashtag_names.push(tag[0]) }
+    @text.scan(/#(\w+)/) { |tag| new_hashtag_names.push(tag[0].downcase) }
     unless new_hashtag_names.blank?
       existing_hashtags = Hashtag.all(:conditions => {:name => new_hashtag_names})
       existing_hashtags.each do |tag|

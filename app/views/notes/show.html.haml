@@ -1,7 +1,20 @@
-%h2= if @note.title != '' then raw @note.title else "Untitled note" end
+%h2
+  - if @note.title != ''
+    - note_title = ""
+    - if @note.fav then note_title << " <i class='icon-star' title='Favorited with @fav@'></i>  " end
+    - note_title << @note.title
+    = raw note_title
+  - else
+    = raw("<i>Untitled note</i>")
 .note
-  .well
-    %p.note-text= raw @note.html_text
-    .note-delete-button.pull-right= link_to(raw("<i class='icon-trash'></i>"), note_path(@note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })
-    .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(@note))
-    .note-last-edit.pull-left= link_to @note.updated_at.strftime("%B %d, %Y"), note_path(@note)
+  .well{:style => "background-color: #FFFCB6" }
+    %p.note-text-show= raw @note.html_text
+    - unless @shared
+      .note-delete-button.pull-right= link_to(raw("<i class='icon-trash'></i>"), note_path(@note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })
+      .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(@note))
+      .shared-link.pull-right{:title => "Shared with @public@"}= raw ("<i class='icon-globe'></i> at <i>http://www.anotar.me" + note_path(@note) + "</i>")
+    .note-last-edit.pull-left= link_to @note.updated_at.strftime("%B %d, %Y at %I:%M%p"), note_path(@note)
+.span5
+%a.btn.btn-info.btn-large{ :href => notes_path }
+  %i.icon-home.icon-white
+  Return

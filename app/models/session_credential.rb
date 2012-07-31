@@ -37,7 +37,17 @@ class SessionCredential < ActiveRecord::Base
   end
 
   def hashtags
-    Note.find_all_by_author_id(self.author_id).map { |n| n.hashtags.each { |h| h } }.uniq
+    hashtags_list = []
+    Note.find_all_by_author_id(self.author_id).each { |n| n.hashtags.each { |h| hashtags_list.push(h) } }
+    hashtags_list.uniq
+  end
+
+  def hashtag_notes(name)
+    hashtag_notes = []
+    Note.find_all_by_author_id(self.author_id).each do |n|
+      n.hashtags.each { |h| if h.name == name then hashtag_notes.push(n) end }
+    end
+    hashtag_notes.uniq
   end
 
 end

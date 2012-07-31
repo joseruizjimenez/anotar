@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :remember_me, :confirmed_at, :opt_in, :login
   # attr_accessible :title, :body
 
-  attr_accessor :login, :author_id, :updated_at, :created_at
+  attr_accessor :login, :author_id, :username, :updated_at, :created_at
 
   validates_presence_of :username, :email, :password, :password_confirmation, :opt_in
   validates_uniqueness_of :author_id, :username, :email, :case_sensitive => false
@@ -36,6 +36,17 @@ class User < ActiveRecord::Base
   end
 
   def hashtags
-    self.notes.map { |n| n.hashtags.each { |h| h } }.uniq
+    hashtags_list = []
+    self.notes.each { |n| n.hashtags.each { |h| hashtags_list.push(h) } }
+    hashtags_list.uniq
   end
+
+  def hashtag_notes(name)
+    hashtag_notes = []
+    self.notes.each do |n|
+      n.hashtags.each { |h| if h.name == name then hashtag_notes.push(n) end }
+    end
+    hashtag_notes.uniq
+  end
+
 end
