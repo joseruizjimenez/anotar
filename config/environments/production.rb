@@ -66,7 +66,7 @@ Anotar::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.assets.initialize_on_precompile = false
-  config.action_mailer.default_url_options = { :host => 'anotar.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'anotar.herokuapp.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -76,7 +76,7 @@ Anotar::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "anotar.heroku.com",
+    domain: "anotar.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
