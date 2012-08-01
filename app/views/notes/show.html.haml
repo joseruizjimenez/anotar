@@ -14,7 +14,7 @@
       .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(@note))
       - if @note.shared
         .shared-link.pull-right{:title => "Shared with @public@"}= raw ("<i class='icon-globe'></i> at <i>http://www.anotar.me" + note_path(@note) + "</i>")
-    .note-last-edit.pull-left= link_to note.updated_at.in_time_zone("Madrid").strftime("%B %d, %Y at %I:%M %p"), note_path(note)
+    .note-last-edit.pull-left= link_to @note.updated_at.in_time_zone("Madrid").strftime("%B %d, %Y at %I:%M %p"), note_path(note)
 .span5
 %a.btn.btn-info.btn-large{ :href => notes_path }
   %i.icon-home.icon-white
