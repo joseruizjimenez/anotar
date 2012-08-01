@@ -28,6 +28,6 @@
           .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(note))
           - if note.shared
             .shared-link.pull-right{:title => "Shared with @public@"}= raw ("<i class='icon-globe'></i> at <i>http://www.anotar.me" + note_path(note) + "</i>")
-          .note-last-edit.pull-left= link_to note.updated_at.strftime("%B %d, %Y at %I:%M%p"), note_path(note)
-- unless @notes.blank? || @notes.size < 5
+          .note-last-edit.pull-left= link_to note.updated_at.in_time_zone("Madrid").strftime("%B %d, %Y at %I:%M %p"), note_path(note)
+- unless @notes.blank? || @notes.size <= 5
   .pagination.pagination-centered#page_navigation

@@ -19,6 +19,12 @@ class NotesController < ApplicationController
     else
       @welcome = true
     end
+    cookies.each { |e| logger.info e }
+    if cookies.has_key? :time_zone
+      @time_zone = cookies[:time_zone]
+    else
+      @time_zone = "UTC"
+    end
   end
 
   def create
