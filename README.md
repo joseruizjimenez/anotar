@@ -1,5 +1,5 @@
-# About this project
-Anotar is a taking note web app
+## About this project
+Anotar is a taking note Ruby on Rails web app
 
 We want:
   - A fast web app
@@ -17,12 +17,19 @@ Have fun :)
 
 ## Contributing
 Feel free to send pull requests via GitHub, also you can contact me at joseruizjimenez@gmail.com
+
 For any new features, bugfix or security warning, please do:
   1. Follow the style of the existing code.
   2. One commit should do just one thing
   3. Commit messages are key on the pull request, please use them properly
   
 Any help is welcomed :)
+
+## Production configuration
+If you want to deploy it under a production environment, you need to set the following ENV variables:
+  - GMAIL_USERNAME (with a gmail account for the app to use)
+  - GMAIL_PASSWORD (the gmail password)
+  - SECRET_TOKEN (with the app secret token, generate one with 'rake secret')
 
 ## Copyright and license
 Copyright 2012 Anotar.me
