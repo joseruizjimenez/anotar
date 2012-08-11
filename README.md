@@ -1,16 +1,17 @@
-# About
+# About this project
 Anotar is a taking note web app
 
 We want:
-    - A fast web app
-    - Liquid templates to show a simple and beautiful interface on any device (Bootstrap)
-    - Zero learning curve
+  - A fast web app
+  - Liquid templates to show a simple and beautiful interface on any device (Bootstrap)
+  - Zero learning curve
 
 To do:
-    - Add AJAX index showing new notes
-    - Add complex search logic
-    - Add Javascript note's text styling in client, not in server
-    - Fix the display on small screens (Sidebar menu should be hidden by default)
+  - Add AJAX index showing new notes
+  - Finish all the features and specs tests
+  - Add complex search logic
+  - Add Javascript note's text styling in client, not in server
+  - Fix the display on small screens (Sidebar menu should be hidden by default)
 
 Have fun :)
 
