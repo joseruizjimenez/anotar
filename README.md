@@ -11,7 +11,6 @@ To do:
   - Finish all the features and specs tests
   - Add complex search logic
   - Add Javascript note's text styling in client, not in server
-  - Fix the display on small screens (Sidebar menu should be hidden by default)
 
 Have fun :)
 
@@ -22,7 +21,7 @@ For any new features, bugfix or security warning, please do:
   1. Follow the style of the existing code.
   2. One commit should do just one thing
   3. Commit messages are key on the pull request, please use them properly
-  
+
 Any help is welcomed :)
 
 ## Production configuration

@@ -20,6 +20,10 @@ body {
   text-decoration: none;
 }
 
+.menu-button {
+  padding-bottom: 8px;
+}
+
 .note-field textarea {
   font-size: medium;
 }
@@ -47,6 +51,10 @@ body {
   margin-top: -15px;
 }
 
+.note-bottom {
+  padding-bottom: 8px;
+}
+
 .hashtag-list li {
   font-size: medium;
 }
@@ -62,6 +70,7 @@ body {
   padding: 5px;
   color: grey;
   text-align: center;
+  font-size: smaller;
 }
 
 #sidebar-footer a {
@@ -70,15 +79,15 @@ body {
 
 .sidebar-nav pre {
   background-color: #EBECF0;
+  font-size: smaller;
 }
 
 .sidebar-nav .sidebar-link {
   padding-left: 10px;
 }
 
-#add-note-button {
-  padding-top: 5px;
-  padding-bottom: 38px;
+.navbar-btn-span {
+  padding-right: 8px;
 }
 
 gray {

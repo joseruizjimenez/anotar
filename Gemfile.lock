@@ -100,6 +100,7 @@ GEM
     mime-types (1.19)
     minitest (3.2.0)
     multi_json (1.3.6)
+    newrelic_rpm (3.4.1)
     nokogiri (1.5.5)
     orm_adapter (0.4.0)
     pg (0.14.0)
@@ -213,6 +214,7 @@ DEPENDENCIES
   launchy
   linecache19 (= 0.5.13)
   minitest
+  newrelic_rpm
   pg
   rails (= 3.2.6)
   rspec-rails

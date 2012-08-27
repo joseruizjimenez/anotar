@@ -1,0 +1,20 @@
+%span
+.btn-group.dropup.menu-button
+  %a.btn.btn-block.dropdown-toggle{:'data-toggle' => "dropdown", :href => "#"}
+    Tags info
+    %i.icon-hand-up
+  %ul.dropdown-menu
+    %li
+      %ul.nav.nav-list
+        %li.nav-header Tag your note
+        %li
+          %pre <darker>@title{My note}</darker> <gray>Gives it a title</gray>
+        %li
+          %pre <darker>@fav@</darker> <gray>Adds it to your favorites</gray>
+        %li
+          %pre <darker>@public@</darker> <gray>Makes a link to share</gray>
+        %li.nav-header Style markups
+        %li
+          %pre <darker>*word*</darker> <gray>Will <b>bold</b> it</gray>
+        %li
+          %pre <darker>_word_</darker> <gray>Will <i>italic</i> it</gray>

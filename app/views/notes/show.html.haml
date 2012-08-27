@@ -9,13 +9,26 @@
 .note
   .well{:style => "background-color: #FFFCB6" }
     %p.note-text-show= raw @note.html_text
-    - unless @shared
-      .note-delete-button.pull-right= link_to(raw("<i class='icon-trash'></i>"), note_path(@note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })
-      .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(@note))
-      - if @note.shared
-        .shared-link.pull-right{:title => "Shared with @public@"}= raw ("<i class='icon-globe'></i> at <i>http://www.anotar.me" + note_path(@note) + "</i>")
-    .note-last-edit.pull-left= link_to @note.updated_at.in_time_zone("Madrid").strftime("%B %d, %Y at %I:%M %p"), note_path(@note)
-.span5
-%a.btn.btn-info.btn-large{ :href => notes_path }
+    .note-bottom
+      .note-last-edit.pull-left= link_to @note.updated_at.in_time_zone("Madrid").strftime("%B %d, %Y at %I:%M %p"), note_path(@note)
+      - unless @shared
+        .note-delete-button.pull-right= link_to(raw("<i class='icon-trash'></i>"), note_path(@note), :method => :delete, :data => { :confirm => 'Do you want to delete the note?' })
+        .note-edit-button.pull-right= link_to(raw("<i class='icon-edit'></i>"), edit_note_path(@note))
+        - if @note.shared
+          .visible-phone
+            %br
+            .btn-group.dropup.pull-left
+              %a.btn.btn-link.btn-block.dropdown-toggle{:'data-toggle' => "dropdown", :href => "#"}
+                %i.icon-globe
+                Public link
+              %ul.dropdown-menu
+                %li
+                  %ul.nav.nav-list
+                    %li.nav-header Note shared at
+                    %li
+                      = raw ("<i class='icon-globe'></i> <i>http://www.anotar.me" + note_path(@note) + "</i>")
+          .hidden-phone
+            .shared-link.pull-right{:title => "Shared with @public@"}= raw ("<i class='icon-globe'></i> at <i>http://www.anotar.me" + note_path(@note) + "</i>")
+%a.btn.btn-info.btn-large.btn-block{ :href => notes_path }
   %i.icon-home.icon-white
   Return

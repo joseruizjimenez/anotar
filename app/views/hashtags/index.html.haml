@@ -7,7 +7,6 @@
   -unless @hashtags.blank?
     - @hashtags.each do |tag|
       %li= raw "<a href='/hashtags/#{tag.name}'># #{tag.name}</a>"
-.span5
-%a.btn.btn-info.btn-large{ :href => notes_path }
+%a.btn.btn-info.btn-large.btn-block{ :href => notes_path }
   %i.icon-home.icon-white
   Return

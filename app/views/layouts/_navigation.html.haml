@@ -17,16 +17,19 @@
       %li.navbar-text= current_user.email
       %li.divider-vertical
       %li
-        %div
-          %a.btn{:href => edit_user_registration_path}
+        .btn-group
+          %a.btn.dropdown-toggle.hidden-phone.hidden-tablet{:'data-toggle' => "dropdown", :href => "#"}
             %i.icon-cog
             Settings
-      %li
-        %div
-          .btn.btn-danger= link_to(raw("<div style='color: white;'><i class='icon-off icon-white'></i>  Logout</div>"), destroy_user_session_path, :method => :delete)
+          %ul.dropdown-menu
+            %li
+              %a{:href => edit_user_registration_path}
+                %i.icon-wrench
+                Edit account
+            %li= link_to(raw("<i class='icon-off'></i>  Logout"), destroy_user_session_path, :method => :delete)
     - else
       %li
-        %div
+        .navbar-btn-span
           %a.btn.btn-success{:href => new_user_session_path}
             %i.icon-user.icon-white
             Login

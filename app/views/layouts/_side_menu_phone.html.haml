@@ -1,0 +1,29 @@
+.btn-group.dropup.menu-button
+  %a.btn.btn-inverse.btn-block.dropdown-toggle{:'data-toggle' => "dropdown", :href => "#"}
+    Navigation menu
+    %i.icon-hand-up.icon-white
+  %ul.dropdown-menu
+    %li
+      %a{:href => notes_path}
+        %i.icon-pencil
+        = " Write a note"
+    %li
+      %a{:href => notes_all_path}
+        %i.icon-inbox
+        = " All your notes"
+    %li
+      %a{:href => notes_favorited_path}
+        %i.icon-star
+        = " Favorites"
+    %li
+      %a{:href => notes_shared_path}
+        %i.icon-globe
+        = " Public notes"
+    %li
+      %a{:href => hashtags_path}
+        %i.icon-tags
+        = " Hashtags view"
+    %li
+      %a{:href => hashtag_path(:name => 'todo')}
+        %i.icon-ok
+        = " #TODO notes"
