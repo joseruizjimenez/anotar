@@ -12,6 +12,8 @@ To do:
   - Add complex search logic
   - Add Javascript note's text styling in client, not in server
 
+Note: Admins console at /admins/console (Must be logged as an admin = true User)
+
 Have fun :)
 
 ## Contributing

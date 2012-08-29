@@ -1,10 +1,122 @@
 - content_for :head do
   = javascript_include_tag 'http://www.google.com/jsapi'
 
-#chart{:style => "width: 700px; height: 240px;"}
-= render_chart @chart, 'chart'
+%ul.nav.nav-tabs
+  %li.active= link_to 'Overview', '#overview', :'data-toggle' => "tab"
+  %li= link_to 'Users', '#users', :'data-toggle' => "tab"
+  %li= link_to 'Sessions', '#sessions', :'data-toggle' => "tab"
+  %li= link_to 'Registers', '#registers', :'data-toggle' => "tab"
+  %li= link_to 'Logins', '#logins', :'data-toggle' => "tab"
+  %li= link_to 'Hashtags', '#hashtags', :'data-toggle' => "tab"
 
-%h2 Users
-- @users.each do |user|
-  %br/
-  #{link_to user.email, user} signed up #{user.created_at.to_date}
+.tab-content
+  .tab-pane.active#overview
+    .thumbnails
+      %li.span8
+        .thumbnail
+          %h4 Users distribution
+          #users_chart{:style => "width: 400px; height: 240px;"}
+          = render_chart @users_chart, 'users_chart'
+      %li.span4
+        .thumbnail
+          %h4 Numbers
+          %h5 Total users: #{@users.size + @sessions.size}
+          %h5 Total notes: #{@notes_count}
+          %h5 Total hashtags: #{@hashtags.size}
+  .tab-pane#users
+    .thumbnails
+      %li.span12
+        .thumbnail
+          %table.table.table-hover.table-condensed
+            %thead
+              %tr
+                %th user
+                %th email
+                %th created at
+                %th last sign
+                %th sign_in
+                %th confirmed
+                %th notes
+            %tbody
+              - @users.each do |user|
+                - if user.admin
+                  %tr.info
+                    %td= link_to user.username, admins_user_path(user.author_id)
+                    %td= link_to user.email, "mailto:#{user.email}"
+                    %td= user.created_at
+                    %td= user.last_sign_in_at
+                    %td= user.sign_in_count
+                    %td= user.confirmed_at
+                    %td= user.notes.size
+                - elsif user.confirmed_at
+                  %tr.success
+                    %td= link_to user.username, admins_user_path(user.author_id)
+                    %td= link_to user.email, "mailto:#{user.email}"
+                    %td= user.created_at
+                    %td= user.last_sign_in_at
+                    %td= user.sign_in_count
+                    %td= user.confirmed_at
+                    %td= user.notes.size
+                - else
+                  %tr
+                    %td= link_to user.username, admins_user_path(user.author_id)
+                    %td= link_to user.email, "mailto:#{user.email}"
+                    %td= user.created_at
+                    %td= user.last_sign_in_at
+                    %td= user.sign_in_count
+                    %td= user.confirmed_at
+                    %td= user.notes.size
+  .tab-pane#sessions
+    .thumbnails
+      %li.span12
+        .thumbnail
+          %table.table.table-hover.table-condensed
+            %thead
+              %tr
+                %th session_id
+                %th author_id
+                %th created at
+                %th updated at
+                %th visits
+                %th notes
+            %tbody
+              - @sessions.each do |user|
+                %tr
+                  %td= user.session_id
+                  %td= link_to user.author_id, admins_user_path(user.author_id)
+                  %td= user.created_at
+                  %td= user.updated_at
+                  %td= user.visits
+                  %td= @session_notes_count[user.session_id]
+  .tab-pane#registers
+    .thumbnails
+      %li.span12
+        .thumbnail
+          %h4 User register count: #{@users.size}
+          #registers_chart{:style => "width: 650px; height: 240px;"}
+          = render_chart @registers_chart, 'registers_chart'
+  .tab-pane#logins
+    .thumbnails
+      %li.span12
+        .thumbnail
+          %h4 Average user logins: #{@logins_average}
+          #logins_chart{:style => "width: 650px; height: 240px;"}
+          = render_chart @logins_chart, 'logins_chart'
+  .tab-pane#hashtags
+    .thumbnails
+      %li.span12
+        .thumbnail
+          %table.table.table-hover.table-condensed
+            %thead
+              %tr
+                %th Hashtag name
+                %th Hits count
+                %th Created at
+                %th Updated at
+            %tbody
+              - @hashtags.each do |h|
+                %tr
+                  %td= h.name
+                  %td= h.hits
+                  %td= h.created_at
+                  %td= h.updated_at

@@ -13,6 +13,8 @@ Anotar::Application.routes.draw do
   get 'hashtags/nav' => 'hashtags#show'
   get 'hashtags/:name' => 'hashtags#show', :as => :hashtag
   get 'hashtags' => 'hashtags#index', :as => :hashtags
+  get 'admins/console' => 'admins#index', :as => :admins_console
+  get 'admins/user/:id' => 'admins#show', :as => :admins_user
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
